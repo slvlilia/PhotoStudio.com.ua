@@ -6,13 +6,12 @@
     <meta name="description" content="Контакти фотостудії PhotoStudio — адреса, телефон, email, форма зворотного зв'язку.">
     <title>PhotoStudio — Контакти</title>
 
-    <!-- Шрифти -->
+   
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Стилі -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="style.css">
 
     <style>
-        /* ── Hero сторінки ── */
+       
         .page-hero {
             padding-top: 70px;
             background: var(--white);
@@ -49,7 +48,7 @@
                 color: var(--border);
             }
 
-        /* ── Основний layout ── */
+        
         .contacts-wrap {
             max-width: 1200px;
             margin: 0 auto;
@@ -60,9 +59,7 @@
             align-items: start;
         }
 
-        /* ── Ліва колонка: інфо + форма ── */
-
-        /* Блок контактної інформації */
+        
         .contact-blocks {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -138,7 +135,7 @@
             display: block;
         }
 
-        /* ── Форма зворотного зв'язку ── */
+        
         .contact-form-section h2 {
             font-family: var(--font-head);
             font-size: clamp(26px, 3vw, 40px);
@@ -255,7 +252,7 @@
                 line-height: 1.65;
             }
 
-        /* ── Права колонка: карта + соцмережі ── */
+       
         .contacts-sidebar {
             display: flex;
             flex-direction: column;
@@ -264,7 +261,7 @@
             top: 90px;
         }
 
-        /* Карта */
+        
         .map-card {
             border: 1px solid var(--border);
             overflow: hidden;
@@ -283,13 +280,13 @@
             gap: 8px;
         }
 
-        /* Google Maps iframe */
+        
         iframe {
             display: block;
             width: 100%;
         }
 
-        /* Адреса під картою */
+        
         .map-address {
             background: var(--white);
             border-top: 1px solid var(--border);
@@ -306,7 +303,7 @@
                 flex-shrink: 0;
             }
 
-        /* Соцмережі */
+        
         .socials-card {
             background: var(--white);
             border: 1px solid var(--border);
@@ -361,7 +358,6 @@
                 color: var(--muted);
             }
 
-        /* Години роботи */
         .hours-card {
             background: var(--dark);
             color: var(--white);
@@ -411,7 +407,7 @@
                 color: #ef9a9a;
             }
 
-        /* ── Footer ── */
+        
         .footer {
             background: var(--white);
             border-top: 1px solid var(--border);
@@ -488,7 +484,7 @@
             color: var(--muted);
         }
 
-        /* ── Адаптивність ── */
+        
         @media (max-width: 1024px) {
             .contacts-wrap {
                 grid-template-columns: 1fr;
@@ -532,9 +528,7 @@
 </head>
 <body>
 
-    <!-- ============================================================
-         НАВІГАЦІЯ
-         ============================================================ -->
+    
     <nav>
         <div class="nav-inner">
             <a href="index.html" class="nav-logo">Photo<span>Studio</span></a>
@@ -551,9 +545,7 @@
         </div>
     </nav>
 
-    <!-- ============================================================
-         HERO СТОРІНКИ
-         ============================================================ -->
+    
     <div class="page-hero">
         <div class="page-hero-inner">
             <div>
@@ -571,15 +563,13 @@
         </div>
     </div>
 
-    <!-- ============================================================
-         ОСНОВНИЙ БЛОК
-         ============================================================ -->
+    
     <div class="contacts-wrap">
 
-        <!-- ЛІВА КОЛОНКА -->
+        
         <div>
 
-            <!-- Контактні блоки -->
+            
             <div class="contact-blocks">
 
                 <div class="contact-block fade-in">
@@ -616,7 +606,7 @@
 
             </div>
 
-            <!-- Форма зворотного зв'язку -->
+            
             <div class="contact-form-section">
                 <h2>Напишіть <em>нам</em></h2>
                 <p class="sub">Заповніть форму і ми зв'яжемося з вами якнайшвидше.</p>
@@ -678,16 +668,16 @@
             </div>
         </div>
 
-        <!-- ПРАВА КОЛОНКА -->
+        
         <aside class="contacts-sidebar">
 
-            <!-- Карта -->
+            
             <div class="map-card">
                 <div class="map-card-label">
                     <span>📍</span> Ми на карті
                 </div>
 
-                <!-- Google Maps — Хрещатик, Київ -->
+                
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.8!2d30.5135747!3d50.4378631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cf01deefc825%3A0xacd489bb95cccf69!2z0KXRgNC10YnQsNGC0LjQuywg0JrQuNGX0LI!5e0!3m2!1suk!2sua!4v1680000000000"
                         width="100%"
                         height="300"
@@ -703,7 +693,7 @@
                 </div>
             </div>
 
-            <!-- Соцмережі -->
+            
             <div class="socials-card">
                 <h3>Ми в соцмережах</h3>
                 <div class="socials-list">
@@ -738,7 +728,7 @@
                 </div>
             </div>
 
-            <!-- Години роботи -->
+            
             <div class="hours-card">
                 <h3>Години роботи</h3>
                 <div class="hours-list">
@@ -760,9 +750,7 @@
         </aside>
     </div>
 
-    <!-- ============================================================
-         FOOTER
-         ============================================================ -->
+    
     <footer class="footer">
         <div class="footer-top">
             <div>
@@ -802,11 +790,11 @@
         </div>
     </footer>
 
-    <!-- JS -->
+    
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="../js/script.js"></script>
     <script>
-        /* ── Валідація та відправка форми контактів ── */
+        
         const form = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const successEl = document.getElementById('contactSuccess');
