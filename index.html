@@ -1,0 +1,724 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PhotoStudio — професійна фотозйомка. Портрети, весілля, предметна зйомка. Онлайн-запис.">
+    <title>PhotoStudio — Головна</title>
+
+    <!-- Шрифти -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Стилі -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* ── Локальні стилі лише для index.html ── */
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr auto;
+            padding-top: 70px;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 60px 80px 80px;
+        }
+
+        .hero-eyebrow {
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: var(--font-head);
+            font-size: clamp(48px, 5vw, 78px);
+            font-weight: 300;
+            line-height: 1.08;
+            margin-bottom: 28px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            color: var(--muted);
+            max-width: 400px;
+            margin-bottom: 48px;
+            line-height: 1.85;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+            background: var(--border);
+        }
+
+            .hero-right img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                display: block;
+            }
+
+        .hero-right-badge {
+            position: absolute;
+            bottom: 32px;
+            left: 32px;
+            background: rgba(248, 247, 244, 0.88);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hero-stats {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--border);
+            background: var(--white);
+        }
+
+        .stat-item {
+            padding: 32px 48px;
+            border-right: 1px solid var(--border);
+        }
+
+            .stat-item:last-child {
+                border-right: none;
+            }
+
+        .stat-num {
+            font-family: var(--font-head);
+            font-size: 44px;
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+            .stat-num sup {
+                font-size: 22px;
+                color: var(--gold);
+                vertical-align: super;
+            }
+
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* Про нас */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            font-size: 15px;
+            margin-bottom: 20px;
+            line-height: 1.85;
+        }
+
+        .about-img {
+            aspect-ratio: 4/5;
+            background: var(--border);
+            overflow: hidden;
+        }
+
+            .about-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        /* Послуги */
+        .services-bg {
+            background: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border: 1px solid var(--border);
+            margin-top: 48px;
+        }
+
+        .service-card {
+            padding: 36px 28px 32px;
+            border-right: 1px solid var(--border);
+            transition: background 0.2s;
+            position: relative;
+        }
+
+            .service-card:last-child {
+                border-right: none;
+            }
+
+            .service-card:hover {
+                background: var(--bg);
+            }
+
+            .service-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: var(--gold);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.3s;
+            }
+
+            .service-card:hover::before {
+                transform: scaleX(1);
+            }
+
+        .service-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }
+
+        .service-card:hover .service-icon {
+            border-color: var(--gold);
+        }
+
+        .service-name {
+            font-family: var(--font-head);
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .service-desc {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .service-price {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* Портфоліо preview */
+        .portfolio-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 4px;
+            margin-top: 40px;
+        }
+
+        .portfolio-item {
+            aspect-ratio: 1;
+            background: var(--border);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+            .portfolio-item:first-child {
+                grid-row: span 2;
+                aspect-ratio: auto;
+            }
+
+            .portfolio-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .portfolio-item:hover img {
+                transform: scale(1.05);
+            }
+
+        .portfolio-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(28,28,26,0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-item-overlay {
+            background: rgba(28,28,26,0.25);
+        }
+
+        .portfolio-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--dark);
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+            .cta-section .tag {
+                color: rgba(184,155,114,0.7);
+                display: block;
+                margin-bottom: 12px;
+            }
+
+            .cta-section h2 {
+                font-family: var(--font-head);
+                font-size: clamp(32px,4vw,52px);
+                font-weight: 300;
+                color: var(--white);
+                margin-bottom: 36px;
+                line-height: 1.15;
+            }
+
+        /* Footer */
+        .footer {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-top {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 40px 36px;
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-head);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+            .footer-logo span {
+                color: var(--gold);
+            }
+
+        .footer-tagline {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .footer-col h4 {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 14px;
+            font-family: var(--font-body);
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .footer-col a {
+            font-size: 13px;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+            .footer-col a:hover {
+                color: var(--text);
+            }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* ── Адаптивність ── */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-card:nth-child(2) {
+                border-right: none;
+            }
+
+            .service-card:nth-child(3),
+            .service-card:nth-child(4) {
+                border-top: 1px solid var(--border);
+            }
+
+            .service-card:nth-child(4) {
+                border-right: none;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-left {
+                padding: 56px 20px 48px;
+                order: 2;
+            }
+
+            .hero-right {
+                height: 60vw;
+                min-height: 220px;
+                order: 1;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                order: 3;
+            }
+
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+
+                .stat-item:last-child {
+                    border-bottom: none;
+                }
+
+            .stat-num {
+                font-size: 32px;
+                margin-bottom: 0;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-img {
+                order: -1;
+                aspect-ratio: 3/2;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+                .service-card:last-child {
+                    border-bottom: none;
+                }
+
+            .portfolio-preview {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .portfolio-item:first-child {
+                grid-row: span 1;
+                aspect-ratio: 1;
+            }
+
+            .cta-section {
+                padding: 60px 20px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                padding: 36px 20px 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                padding: 16px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Photo<span>Studio</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Головна</a></li>
+                <li><a href="services.html">Послуги</a></li>
+                <li><a href="portfolio.html">Портфоліо</a></li>
+                <li><a href="booking.html">Запис</a></li>
+                <li><a href="contacts.html">Контакти</a></li>
+            </ul>
+            <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left">
+            <p class="hero-eyebrow">Фотостудія · Київ</p>
+            <h1 class="hero-title">
+                Твоя історія —<br>
+                у <em>кожному</em><br>
+                кадрі
+            </h1>
+            <p class="hero-desc">
+                Професійна фотозйомка для тих, хто цінує деталі.
+                Портрети, весілля, сімейні та комерційні фотосесії
+                у затишній студії в центрі Києва.
+            </p>
+            <div class="hero-cta">
+                <a href="booking.html" class="btn btn-primary">Записатися</a>
+                <a href="portfolio.html" class="btn btn-ghost">Переглянути портфоліо</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <img src="../images/hero/hero-bg.jpg" alt="Фотостудія PhotoStudio">
+            <div class="hero-right-badge">© PhotoStudio 2026</div>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-num">5<sup>+</sup></div>
+                <div class="stat-label">Років досвіду</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">800<sup>+</sup></div>
+                <div class="stat-label">Задоволених клієнтів</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">12<sup>k+</sup></div>
+                <div class="stat-label">Фотографій у портфоліо</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ПРО НАС -->
+    <div class="container section">
+        <div class="about-grid">
+            <div class="about-text fade-in">
+                <span class="tag">Про студію</span>
+                <h2>Більше ніж просто<br><em>фотографія</em></h2>
+                <p>
+                    PhotoStudio — це простір, де кожна фотосесія перетворюється
+                    на унікальну розповідь. Ми поєднуємо технічну майстерність
+                    із творчим підходом, щоб зафіксувати справжні емоції.
+                </p>
+                <p>
+                    Наш вебсайт створено в рамках кваліфікаційної роботи за темою
+                    «Вебсайт для просування послуг фотостудії» і демонструє
+                    сучасні підходи до веброзробки: HTML, CSS, JavaScript,
+                    адаптивний дизайн та зручний онлайн-запис.
+                </p>
+                <a href="services.html" class="btn btn-ghost" style="display:inline-flex; margin-top:8px;">
+                    Наші послуги
+                </a>
+            </div>
+            <div class="about-img fade-in">
+                
+                <img src="../images/about.jpg" alt="Про PhotoStudio"> 
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ПОСЛУГИ -->
+    <div class="services-bg">
+        <div class="container section">
+            <span class="tag fade-in">Що ми пропонуємо</span>
+            <h2 class="fade-in">Наші <em>послуги</em></h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎭</div>
+                    <h3 class="service-name">Портрет</h3>
+                    <p class="service-desc">Індивідуальна портретна зйомка. Підкреслимо вашу особистість і характер у кожному знімку.</p>
+                    <span class="service-price">від 1 500 грн / год</span>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">💍</div>
+                    <h3 class="service-name">Весілля</h3>
+                    <p class="service-desc">Весільна фотографія — збережемо найважливіший день у вашому житті в деталях та емоціях.</p>
+                    <span class="service-price">від 8 000 грн / день</span>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">👨‍👩‍👧</div>
+                    <h3 class="service-name">Сімейна</h3>
+                    <p class="service-desc">Сімейні фотосесії у студії або на природі. Тепла атмосфера та щирі моменти.</p>
+                    <span class="service-price">від 2 000 грн / год</span>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">📦</div>
+                    <h3 class="service-name">Предметна</h3>
+                    <p class="service-desc">Рекламна та предметна зйомка для брендів, інтернет-магазинів і соціальних мереж.</p>
+                    <span class="service-price">від 2 500 грн / год</span>
+                </div>
+            </div>
+            <div style="text-align:center; padding-top:40px;">
+                <a href="services.html" class="btn btn-ghost">Усі послуги та ціни</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОРТФОЛІО PREVIEW -->
+    <div class="container section">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;">
+            <div>
+                <span class="tag fade-in">Наші роботи</span>
+                <h2 class="fade-in">Портфоліо</h2>
+            </div>
+            <a href="portfolio.html" class="btn btn-ghost fade-in" style="margin-bottom:8px;">
+                Переглянути всі
+            </a>
+        </div>
+        <div class="portfolio-preview">
+            <div class="portfolio-item fade-in">
+                <img src="../images/portfolio/wedding-1.jpg" alt="Весілля"> 
+                <div class="portfolio-item-overlay"><span class="portfolio-label">Весілля</span></div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <img src="../images/portfolio/portrait-1.jpg" alt="Портрет"> 
+                <div class="portfolio-item-overlay"><span class="portfolio-label">Портрет</span></div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <img src="../images/portfolio/family-1.jpg" alt="Сімейна"> 
+                <div class="portfolio-item-overlay"><span class="portfolio-label">Сімейна</span></div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <img src="../images/portfolio/product-1.jpg" alt="Предметна"> 
+                <div class="portfolio-item-overlay"><span class="portfolio-label">Предметна</span></div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <img src="../images/portfolio/portrait-2.jpg" alt="Портрет"> 
+                <div class="portfolio-item-overlay"><span class="portfolio-label">Реклама</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <span class="tag">Готові до зйомки?</span>
+        <h2>Запишіться на<br><em>фотосесію онлайн</em></h2>
+        <a href="booking.html" class="btn btn-light">Забронювати дату</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div>
+                <a href="index.html" class="footer-logo">Photo<span>Studio</span></a>
+                <p class="footer-tagline">Професійна фотозйомка в серці Києва. Ваша історія — в кожному кадрі.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Навігація</h4>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="services.html">Послуги</a></li>
+                    <li><a href="portfolio.html">Портфоліо</a></li>
+                    <li><a href="booking.html">Запис</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Послуги</h4>
+                <ul>
+                    <li><a href="services.html">Портретна зйомка</a></li>
+                    <li><a href="services.html">Весільна фотографія</a></li>
+                    <li><a href="services.html">Сімейні фотосесії</a></li>
+                    <li><a href="services.html">Предметна зйомка</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Контакти</h4>
+                <ul>
+                    <li><a href="tel:+380500000000">📞 +38 (050) 000-00-00</a></li>
+                    <li><a href="mailto:hello@photostudio.ua">✉️ hello@photostudio.ua</a></li>
+                    <li><a href="contacts.html">📍 вул. Хрещатик 1, Київ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© <span id="currentYear"></span> PhotoStudio. Серьоженко Л.В. — Кваліфікаційна робота ДТЕУ</p>
+        </div>
+    </footer>
+
+   
+    <script src="../js/script.js"></script>
+
+</body>
+</html>

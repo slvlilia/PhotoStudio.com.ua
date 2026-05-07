@@ -1,0 +1,956 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Послуги фотостудії PhotoStudio — портретна, весільна, сімейна та предметна зйомка. Ціни та деталі.">
+    <title>PhotoStudio — Послуги</title>
+
+    <!-- Шрифти -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Стилі (папка css/ на рівень вище) -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* ── Локальні стилі лише для services.html ── */
+
+        /* Hero сторінки */
+        .page-hero {
+            padding-top: 70px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 64px 40px 56px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .page-hero h1 {
+            font-family: var(--font-head);
+            font-size: clamp(40px, 5vw, 68px);
+            font-weight: 300;
+            line-height: 1.1;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+            .breadcrumb a {
+                transition: color 0.2s;
+            }
+
+                .breadcrumb a:hover {
+                    color: var(--gold);
+                }
+
+            .breadcrumb span {
+                color: var(--border);
+            }
+
+        /* ── Сітка послуг ── */
+        .services-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 72px 40px;
+        }
+
+        .services-big-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin-bottom: 2px;
+        }
+
+        /* Картка послуги — велика */
+        .svc-big {
+            background: var(--white);
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 340px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+            position: relative;
+        }
+
+            .svc-big:hover {
+                box-shadow: var(--shadow-md);
+                z-index: 1;
+            }
+
+        .svc-big-img {
+            background: linear-gradient(145deg, #e2ddd5, #ccc5b8);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+            .svc-big-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                inset: 0;
+                transition: transform 0.5s ease;
+            }
+
+        .svc-big:hover .svc-big-img img {
+            transform: scale(1.05);
+        }
+
+        /* заглушка якщо нема фото */
+        .svc-big-img .placeholder {
+            font-size: 36px;
+            opacity: 0.18;
+            z-index: 1;
+        }
+
+        .svc-big-img .placeholder-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(28,28,26,0.25);
+            z-index: 1;
+        }
+
+        .svc-big-content {
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .svc-big-num {
+            font-family: var(--font-head);
+            font-size: 56px;
+            font-weight: 300;
+            color: var(--border);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .svc-big-name {
+            font-family: var(--font-head);
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .svc-big-desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .svc-big-price {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 24px;
+        }
+
+        .price-label {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .price-value {
+            font-family: var(--font-head);
+            font-size: 26px;
+            font-weight: 300;
+            color: var(--text);
+        }
+
+        .price-unit {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* Що входить */
+        .svc-includes {
+            margin-bottom: 28px;
+        }
+
+        .svc-includes-title {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .svc-includes ul {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .svc-includes li {
+            font-size: 13px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .svc-includes li::before {
+                content: '';
+                width: 16px;
+                height: 1px;
+                background: var(--gold);
+                flex-shrink: 0;
+            }
+
+        /* ── Додаткові послуги (малі картки) ── */
+        .extra-section {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        .extra-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 72px 40px;
+        }
+
+        .extra-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-top: 48px;
+        }
+
+        .extra-card {
+            background: var(--white);
+            padding: 36px 32px;
+            transition: background 0.2s;
+            position: relative;
+        }
+
+            .extra-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: var(--gold);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.3s;
+            }
+
+            .extra-card:hover {
+                background: var(--bg);
+            }
+
+                .extra-card:hover::before {
+                    transform: scaleX(1);
+                }
+
+        .extra-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .extra-name {
+            font-family: var(--font-head);
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .extra-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .extra-price {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* ── Таблиця пакетів ── */
+        .packages-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 72px 40px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .package-card {
+            border: 1px solid var(--border);
+            background: var(--white);
+            overflow: hidden;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+            .package-card:hover {
+                box-shadow: var(--shadow-md);
+                transform: translateY(-4px);
+            }
+
+            .package-card.featured {
+                border-color: var(--gold);
+                position: relative;
+            }
+
+        .package-badge {
+            background: var(--gold);
+            color: var(--white);
+            text-align: center;
+            padding: 7px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .package-head {
+            padding: 32px 28px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .package-name {
+            font-family: var(--font-head);
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .package-tagline {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .package-price {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+            .package-price .amount {
+                font-family: var(--font-head);
+                font-size: 38px;
+                font-weight: 300;
+            }
+
+            .package-price .currency {
+                font-size: 16px;
+                color: var(--muted);
+            }
+
+            .package-price .period {
+                font-size: 12px;
+                color: var(--muted);
+                margin-left: 4px;
+            }
+
+        .package-features {
+            padding: 24px 28px 28px;
+        }
+
+            .package-features li {
+                font-size: 13.5px;
+                color: var(--text);
+                padding: 7px 0;
+                border-bottom: 1px solid var(--border);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+                .package-features li:last-child {
+                    border-bottom: none;
+                }
+
+                .package-features li::before {
+                    content: '✓';
+                    color: var(--gold);
+                    font-size: 12px;
+                    flex-shrink: 0;
+                }
+
+                .package-features li.disabled {
+                    color: var(--muted);
+                    text-decoration: line-through;
+                }
+
+                    .package-features li.disabled::before {
+                        content: '×';
+                        color: var(--border);
+                    }
+
+        .package-foot {
+            padding: 0 28px 28px;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            background: var(--dark);
+            padding: 88px 40px;
+            text-align: center;
+        }
+
+            .cta-section .tag {
+                color: rgba(184,155,114,0.7);
+                display: block;
+                margin-bottom: 12px;
+            }
+
+            .cta-section h2 {
+                font-family: var(--font-head);
+                font-size: clamp(32px,4vw,52px);
+                font-weight: 300;
+                color: var(--white);
+                margin-bottom: 36px;
+            }
+
+        /* ── Footer ── */
+        .footer {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-top {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 40px 36px;
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-head);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+            .footer-logo span {
+                color: var(--gold);
+            }
+
+        .footer-tagline {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .footer-col h4 {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 14px;
+            font-family: var(--font-body);
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .footer-col a {
+            font-size: 13px;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+            .footer-col a:hover {
+                color: var(--text);
+            }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* ── Адаптивність ── */
+        @media (max-width: 1024px) {
+            .services-big-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .svc-big {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero-inner {
+                padding: 48px 20px 40px;
+            }
+
+            .svc-big {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .svc-big-img {
+                min-height: 220px;
+            }
+
+            .svc-big-content {
+                padding: 28px 24px;
+            }
+
+            .extra-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-section,
+            .extra-inner,
+            .packages-section {
+                padding: 48px 20px;
+            }
+
+            .cta-section {
+                padding: 60px 20px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                padding: 36px 20px 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                padding: 16px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         НАВІГАЦІЯ
+         ============================================================ -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Photo<span>Studio</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="services.html" class="active">Послуги</a></li>
+                <li><a href="portfolio.html">Портфоліо</a></li>
+                <li><a href="booking.html">Запис</a></li>
+                <li><a href="contacts.html">Контакти</a></li>
+            </ul>
+            <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         HERO СТОРІНКИ
+         ============================================================ -->
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <div>
+                <div class="breadcrumb">
+                    <a href="index.html">Головна</a>
+                    <span>/</span>
+                    <span style="color: var(--text)">Послуги</span>
+                </div>
+                <h1>Наші <em>послуги</em></h1>
+            </div>
+            <p style="max-width:380px; color:var(--muted); font-size:15px; line-height:1.8;">
+                Від портретної зйомки до масштабних комерційних проєктів —
+                знайди формат, який підходить саме тобі.
+            </p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         ОСНОВНІ ПОСЛУГИ
+         ============================================================ -->
+    <section class="services-section">
+        <span class="tag fade-in">Що ми робимо</span>
+        <h2 class="section-title fade-in">Основні <em>напрямки</em></h2>
+
+        <div class="services-big-grid" style="margin-top: 48px;">
+
+            <!-- Портрет -->
+            <div class="svc-big fade-in">
+                <div class="svc-big-img">
+                   <img src="../images/services/portrait.jpg" alt="Портретна зйомка">
+                </div>
+                <div class="svc-big-content">
+                    <div class="svc-big-num">01</div>
+                    <div>
+                        <h3 class="svc-big-name">Портретна зйомка</h3>
+                        <p class="svc-big-desc">
+                            Індивідуальна зйомка, що підкреслює характер і особистість.
+                            Ідеально для соцмереж, резюме, особистого архіву або подарунка.
+                        </p>
+                        <div class="svc-includes">
+                            <div class="svc-includes-title">Що входить</div>
+                            <ul>
+                                <li>Консультація перед зйомкою</li>
+                                <li>1–2 години у студії</li>
+                                <li>Підбір реквізиту та фону</li>
+                                <li>20–30 оброблених фото</li>
+                                <li>Архів у хмарному сховищі</li>
+                            </ul>
+                        </div>
+                        <div class="svc-big-price">
+                            <span class="price-label">від</span>
+                            <span class="price-value">1 500</span>
+                            <span class="price-unit">грн / год</span>
+                        </div>
+                        <a href="booking.html" class="btn btn-primary">Записатися</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Весілля -->
+            <div class="svc-big fade-in">
+                <div class="svc-big-img">
+                    <img src="../images/services/wedding.jpg" alt="Весільна зйомка"> -->
+                    
+                </div>
+                <div class="svc-big-content">
+                    <div class="svc-big-num">02</div>
+                    <div>
+                        <h3 class="svc-big-name">Весільна фотографія</h3>
+                        <p class="svc-big-desc">
+                            Зберігаємо найважливіший день у вашому житті — від ранкових
+                            зборів до вечірнього торжества. Природні, живі та щирі кадри.
+                        </p>
+                        <div class="svc-includes">
+                            <div class="svc-includes-title">Що входить</div>
+                            <ul>
+                                <li>Зустріч і планування дня</li>
+                                <li>Зйомка весь день (до 12 год)</li>
+                                <li>2 фотографи</li>
+                                <li>100–200 оброблених фото</li>
+                                <li>Фотокнига у подарунок</li>
+                            </ul>
+                        </div>
+                        <div class="svc-big-price">
+                            <span class="price-label">від</span>
+                            <span class="price-value">8 000</span>
+                            <span class="price-unit">грн / день</span>
+                        </div>
+                        <a href="booking.html" class="btn btn-primary">Записатися</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Сімейна -->
+            <div class="svc-big fade-in">
+                <div class="svc-big-img">
+                   <img src="../images/services/family.jpg" alt="Сімейна зйомка"> 
+              
+                </div>
+                <div class="svc-big-content">
+                    <div class="svc-big-num">03</div>
+                    <div>
+                        <h3 class="svc-big-name">Сімейна зйомка</h3>
+                        <p class="svc-big-desc">
+                            Тепла атмосфера, щирі емоції та незабутні моменти разом.
+                            Знімаємо у студії або виїжджаємо на природу.
+                        </p>
+                        <div class="svc-includes">
+                            <div class="svc-includes-title">Що входить</div>
+                            <ul>
+                                <li>Зйомка 1–1.5 години</li>
+                                <li>Без обмежень по кількості людей</li>
+                                <li>Реквізит та декор</li>
+                                <li>30–50 оброблених фото</li>
+                                <li>Доставка фото за 5 днів</li>
+                            </ul>
+                        </div>
+                        <div class="svc-big-price">
+                            <span class="price-label">від</span>
+                            <span class="price-value">2 000</span>
+                            <span class="price-unit">грн / год</span>
+                        </div>
+                        <a href="booking.html" class="btn btn-primary">Записатися</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Предметна -->
+            <div class="svc-big fade-in">
+                <div class="svc-big-img">
+                    <img src="../images/services/product.jpg" alt="Предметна зйомка"> -->       
+                </div>
+                <div class="svc-big-content">
+                    <div class="svc-big-num">04</div>
+                    <div>
+                        <h3 class="svc-big-name">Предметна зйомка</h3>
+                        <p class="svc-big-desc">
+                            Рекламна зйомка товарів для інтернет-магазинів, брендів
+                            та соціальних мереж. Підкреслимо переваги вашого продукту.
+                        </p>
+                        <div class="svc-includes">
+                            <div class="svc-includes-title">Що входить</div>
+                            <ul>
+                                <li>Студійне освітлення та фони</li>
+                                <li>До 20 позицій товару за сесію</li>
+                                <li>Базова ретуш кожного фото</li>
+                                <li>Формати JPG + PNG (без фону)</li>
+                                <li>Передача файлів у день зйомки</li>
+                            </ul>
+                        </div>
+                        <div class="svc-big-price">
+                            <span class="price-label">від</span>
+                            <span class="price-value">2 500</span>
+                            <span class="price-unit">грн / год</span>
+                        </div>
+                        <a href="booking.html" class="btn btn-primary">Записатися</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+         ДОДАТКОВІ ПОСЛУГИ
+         ============================================================ -->
+    <div class="extra-section">
+        <div class="extra-inner">
+            <span class="tag fade-in">Більше можливостей</span>
+            <h2 class="section-title fade-in">Додаткові <em>послуги</em></h2>
+
+            <div class="extra-grid">
+                <div class="extra-card fade-in">
+                    <div class="extra-icon">✈️</div>
+                    <h3 class="extra-name">Виїзна зйомка</h3>
+                    <p class="extra-desc">Приїдемо до вас — додому, в офіс або на природу. Ціна залежить від відстані.</p>
+                    <span class="extra-price">від 500 грн</span>
+                </div>
+                <div class="extra-card fade-in">
+                    <div class="extra-icon">🎨</div>
+                    <h3 class="extra-name">Ретуш та обробка</h3>
+                    <p class="extra-desc">Професійна кольорокорекція та ретуш фотографій. Доступна окремо від зйомки.</p>
+                    <span class="extra-price">від 150 грн / фото</span>
+                </div>
+                <div class="extra-card fade-in">
+                    <div class="extra-icon">📖</div>
+                    <h3 class="extra-name">Фотокнига</h3>
+                    <p class="extra-desc">Друкована фотокнига у твердій обкладинці — чудовий подарунок або спогад.</p>
+                    <span class="extra-price">від 1 200 грн</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         ПАКЕТИ
+         ============================================================ -->
+    <div class="packages-section">
+        <span class="tag fade-in">Обирай зручний формат</span>
+        <h2 class="section-title fade-in">Пакети <em>зйомки</em></h2>
+
+        <div class="packages-grid">
+
+            <!-- Базовий -->
+            <div class="package-card fade-in">
+                <div class="package-head">
+                    <div class="package-name">Базовий</div>
+                    <div class="package-tagline">Для швидкого результату</div>
+                </div>
+                <div class="package-price">
+                    <span class="currency">₴</span>
+                    <span class="amount">1 500</span>
+                    <span class="period">/ 1 год</span>
+                </div>
+                <div class="package-features">
+                    <ul>
+                        <li>1 година зйомки</li>
+                        <li>15 оброблених фото</li>
+                        <li>1 зміна образу</li>
+                        <li>Доставка за 7 днів</li>
+                        <li class="disabled">Виїзна зйомка</li>
+                        <li class="disabled">Фотокнига</li>
+                    </ul>
+                </div>
+                <div class="package-foot">
+                    <a href="booking.html" class="btn btn-ghost" style="width:100%; justify-content:center;">Обрати</a>
+                </div>
+            </div>
+
+            <!-- Стандарт (популярний) -->
+            <div class="package-card featured fade-in">
+                <div class="package-badge">Найпопулярніший</div>
+                <div class="package-head">
+                    <div class="package-name">Стандарт</div>
+                    <div class="package-tagline">Оптимальний вибір</div>
+                </div>
+                <div class="package-price">
+                    <span class="currency">₴</span>
+                    <span class="amount">3 500</span>
+                    <span class="period">/ 2 год</span>
+                </div>
+                <div class="package-features">
+                    <ul>
+                        <li>2 години зйомки</li>
+                        <li>30 оброблених фото</li>
+                        <li>3 зміни образу</li>
+                        <li>Доставка за 5 днів</li>
+                        <li>Базова ретуш включена</li>
+                        <li class="disabled">Фотокнига</li>
+                    </ul>
+                </div>
+                <div class="package-foot">
+                    <a href="booking.html" class="btn btn-primary" style="width:100%; justify-content:center;">Обрати</a>
+                </div>
+            </div>
+
+            <!-- Преміум -->
+            <div class="package-card fade-in">
+                <div class="package-head">
+                    <div class="package-name">Преміум</div>
+                    <div class="package-tagline">Максимальний результат</div>
+                </div>
+                <div class="package-price">
+                    <span class="currency">₴</span>
+                    <span class="amount">6 000</span>
+                    <span class="period">/ 4 год</span>
+                </div>
+                <div class="package-features">
+                    <ul>
+                        <li>4 години зйомки</li>
+                        <li>60 оброблених фото</li>
+                        <li>Без обмежень образів</li>
+                        <li>Доставка за 3 дні</li>
+                        <li>Глибока ретуш включена</li>
+                        <li>Фотокнига у подарунок</li>
+                    </ul>
+                </div>
+                <div class="package-foot">
+                    <a href="booking.html" class="btn btn-ghost" style="width:100%; justify-content:center;">Обрати</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================================
+         CTA
+         ============================================================ -->
+    <div class="cta-section">
+        <span class="tag">Не знайшли потрібне?</span>
+        <h2>Напишіть нам —<br>підберемо <em>індивідуальний</em> формат</h2>
+        <a href="contacts.html" class="btn btn-light">Зв'язатися з нами</a>
+    </div>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div>
+                <a href="index.html" class="footer-logo">Photo<span>Studio</span></a>
+                <p class="footer-tagline">Професійна фотозйомка в серці Києва. Ваша історія — в кожному кадрі.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Навігація</h4>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="services.html">Послуги</a></li>
+                    <li><a href="portfolio.html">Портфоліо</a></li>
+                    <li><a href="booking.html">Запис</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Послуги</h4>
+                <ul>
+                    <li><a href="services.html">Портретна зйомка</a></li>
+                    <li><a href="services.html">Весільна фотографія</a></li>
+                    <li><a href="services.html">Сімейні фотосесії</a></li>
+                    <li><a href="services.html">Предметна зйомка</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Контакти</h4>
+                <ul>
+                    <li><a href="tel:+380500000000">📞 +38 (050) 000-00-00</a></li>
+                    <li><a href="mailto:hello@photostudio.ua">✉️ hello@photostudio.ua</a></li>
+                    <li><a href="contacts.html">📍 вул. Хрещатик 1, Київ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© <span id="currentYear"></span> PhotoStudio. Серьоженко Л.В. — Кваліфікаційна робота ДТЕУ</p>
+        </div>
+    </footer>
+
+    <!-- JS (папка js/ на рівень вище) -->
+    <script src="../js/script.js"></script>
+
+</body>
+</html>

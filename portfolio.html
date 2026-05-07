@@ -1,0 +1,846 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Портфоліо фотостудії PhotoStudio — приклади портретної, весільної, сімейної та предметної зйомки.">
+    <title>PhotoStudio — Портфоліо</title>
+
+    <!-- Шрифти -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Стилі -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* ── Hero сторінки ── */
+        .page-hero {
+            padding-top: 70px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 64px 40px 56px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+            .breadcrumb a:hover {
+                color: var(--gold);
+            }
+
+            .breadcrumb span {
+                color: var(--border);
+            }
+
+        /* ── Фільтри ── */
+        .portfolio-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 64px 40px 80px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 9px 22px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 400;
+            font-family: var(--font-body);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.22s;
+        }
+
+            .filter-btn:hover {
+                border-color: var(--text);
+                color: var(--text);
+            }
+
+            .filter-btn.active {
+                background: var(--text);
+                border-color: var(--text);
+                color: var(--white);
+            }
+
+        /* ── Галерея ── */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: var(--border);
+            cursor: pointer;
+        }
+
+            /* Великі плитки */
+            .gallery-item.wide {
+                grid-column: span 2;
+                aspect-ratio: 2/1;
+            }
+
+            .gallery-item.tall {
+                grid-row: span 2;
+                aspect-ratio: 1/2;
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+                display: block;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
+
+        /* Заглушка якщо нема фото */
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+            background: linear-gradient(145deg, #e2ddd5, #ccc5b8);
+        }
+
+            .gallery-placeholder .ph-icon {
+                font-size: 28px;
+                opacity: 0.2;
+            }
+
+            .gallery-placeholder .ph-label {
+                font-size: 10px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: rgba(28,28,26,0.25);
+            }
+
+        /* Overlay */
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(28, 28, 26, 0);
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+            transition: background 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            background: rgba(28, 28, 26, 0.45);
+        }
+
+        .overlay-info {
+            transform: translateY(12px);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .gallery-item:hover .overlay-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .overlay-info .cat {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .overlay-info .title {
+            font-family: var(--font-head);
+            font-size: 20px;
+            font-weight: 300;
+            color: var(--white);
+            display: block;
+        }
+
+        /* ── Лічильник результатів ── */
+        .results-count {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+            .results-count span {
+                color: var(--text);
+                font-weight: 500;
+            }
+
+        /* ── Повідомлення "нічого не знайдено" ── */
+        .no-results {
+            display: none;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--muted);
+        }
+
+            .no-results .icon {
+                font-size: 40px;
+                margin-bottom: 16px;
+                opacity: 0.3;
+            }
+
+            .no-results p {
+                font-size: 14px;
+            }
+
+        /* ── Лайтбокс ── */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.96);
+            align-items: center;
+            justify-content: center;
+        }
+
+            .lightbox.open {
+                display: flex;
+            }
+
+        .lightbox-wrap {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+            .lightbox-wrap img {
+                max-width: 80vw;
+                max-height: 85vh;
+                object-fit: contain;
+                display: block;
+            }
+
+        .lb-btn {
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+            .lb-btn:hover {
+                border-color: #fff;
+                color: #fff;
+            }
+
+        .lb-close {
+            position: absolute;
+            top: -52px;
+            right: 0;
+            border: none;
+            background: none;
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: color 0.2s;
+            font-family: var(--font-body);
+        }
+
+            .lb-close:hover {
+                color: #fff;
+            }
+
+        .lb-counter {
+            position: absolute;
+            bottom: -36px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            background: var(--dark);
+            padding: 88px 40px;
+            text-align: center;
+        }
+
+            .cta-section .tag {
+                color: rgba(184,155,114,0.7);
+                display: block;
+                margin-bottom: 12px;
+            }
+
+            .cta-section h2 {
+                font-family: var(--font-head);
+                font-size: clamp(32px, 4vw, 52px);
+                font-weight: 300;
+                color: var(--white);
+                margin-bottom: 36px;
+            }
+
+        /* ── Footer ── */
+        .footer {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-top {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 40px 36px;
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-head);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+            .footer-logo span {
+                color: var(--gold);
+            }
+
+        .footer-tagline {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .footer-col h4 {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 14px;
+            font-family: var(--font-body);
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .footer-col a {
+            font-size: 13px;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+            .footer-col a:hover {
+                color: var(--text);
+            }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* ── Адаптивність ── */
+        @media (max-width: 768px) {
+            .page-hero-inner {
+                padding: 48px 20px 40px;
+            }
+
+            .portfolio-section {
+                padding: 40px 20px 60px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item.wide {
+                grid-column: span 2;
+                aspect-ratio: 2/1;
+            }
+
+            .gallery-item.tall {
+                grid-row: span 1;
+                aspect-ratio: 1;
+            }
+
+            .cta-section {
+                padding: 60px 20px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                padding: 36px 20px 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                padding: 16px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.wide,
+            .gallery-item.tall {
+                grid-column: span 1;
+                grid-row: span 1;
+                aspect-ratio: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         НАВІГАЦІЯ
+         ============================================================ -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Photo<span>Studio</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="services.html">Послуги</a></li>
+                <li><a href="portfolio.html" class="active">Портфоліо</a></li>
+                <li><a href="booking.html">Запис</a></li>
+                <li><a href="contacts.html">Контакти</a></li>
+            </ul>
+            <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         HERO СТОРІНКИ
+         ============================================================ -->
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <div>
+                <div class="breadcrumb">
+                    <a href="index.html">Головна</a>
+                    <span>/</span>
+                    <span style="color: var(--text)">Портфоліо</span>
+                </div>
+                <h1>Наше <em>портфоліо</em></h1>
+            </div>
+            <p style="max-width:360px; color:var(--muted); font-size:15px; line-height:1.8;">
+                Кожна фотографія — це момент, збережений назавжди.
+                Переглядай роботи за категоріями.
+            </p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         ГАЛЕРЕЯ
+         ============================================================ -->
+    <section class="portfolio-section">
+
+        <!-- Фільтри -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Всі роботи</button>
+            <button class="filter-btn" data-filter="portrait">Портрет</button>
+            <button class="filter-btn" data-filter="wedding">Весілля</button>
+            <button class="filter-btn" data-filter="family">Сімейна</button>
+            <button class="filter-btn" data-filter="product">Предметна</button>
+        </div>
+
+        <!-- Лічильник -->
+        <p class="results-count">Показано: <span id="visibleCount">12</span> робіт</p>
+
+        <!-- Сітка галереї -->
+        <div class="gallery-grid" id="galleryGrid">
+
+            <!-- Рядок 1 -->
+            <div class="gallery-item wide fade-in" data-category="wedding">
+             <img src="../images/portfolio/wedding-1.jpg" alt="Весільна зйомка"> 
+                <div class="gallery-placeholder">
+                    <span class="ph-icon">💍</span>
+                    <span class="ph-label">wedding-1.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Весілля</span>
+                        <span class="title">День, що назавжди</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item tall fade-in" data-category="portrait">
+                <img src="../images/portfolio/portrait-1.jpg" alt="Портретна зйомка">
+                <div class="gallery-placeholder">
+                    <span class="ph-icon">🎭</span>
+                    <span class="ph-label">portrait-1.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Портрет</span>
+                        <span class="title">Характер у кадрі</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Рядок 2 -->
+            <div class="gallery-item fade-in" data-category="family">
+                 <img src="../images/portfolio/family-1.jpg" alt="Сімейна зйомка"> 
+                <div class="gallery-placeholder" style="background: linear-gradient(145deg,#ddd8ce,#cec7bb)">
+                    <span class="ph-icon">👨‍👩‍👧</span>
+                    <span class="ph-label">family-1.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Сімейна</span>
+                        <span class="title">Разом</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item fade-in" data-category="product">
+                 <img src="../images/portfolio/product-1.jpg" alt="Предметна зйомка"> 
+                <div class="gallery-placeholder" style="background: linear-gradient(145deg,#e4dfd6,#d4cdc0)">
+                    <span class="ph-icon">📦</span>
+                    <span class="ph-label">product-1.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Предметна</span>
+                        <span class="title">Деталі мають значення</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Рядок 3 -->
+            <div class="gallery-item fade-in" data-category="portrait">
+                <img src="../images/portfolio/portrait-2.jpg" alt="Портретна зйомка"> 
+                <div class="gallery-placeholder" style="background: linear-gradient(145deg,#e0dbd1,#d0c9bc)">
+                    <span class="ph-icon">🧑</span>
+                    <span class="ph-label">portrait-2.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Портрет</span>
+                        <span class="title">Природній світло</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item wide fade-in" data-category="wedding">
+                <img src="../images/portfolio/wedding-2.jpg" alt="Весільна зйомка"> 
+                <div class="gallery-placeholder" style="background: linear-gradient(145deg,#dbd5cb,#cbc4b6)">
+                    <span class="ph-icon">💐</span>
+                    <span class="ph-label">wedding-2.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Весілля</span>
+                        <span class="title">Перший танець</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Рядок 4 -->
+            <div class="gallery-item fade-in" data-category="family">
+                <img src="../images/portfolio/family-2.jpg" alt="Сімейна зйомка"> 
+                <div class="gallery-placeholder" style="background: linear-gradient(145deg,#e2ddd4,#d2cbbe)">
+                    <span class="ph-icon">🧸</span>
+                    <span class="ph-label">family-2.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Сімейна</span>
+                        <span class="title">Дитячі моменти</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item fade-in" data-category="product">
+                <img src="../images/portfolio/product-2.jpg" alt="Предметна зйомка"> 
+                <div class="gallery-placeholder" style="background: linear-gradient(145deg,#dedad0,#cec7b8)">
+                    <span class="ph-icon">💄</span>
+                    <span class="ph-label">product-2.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Предметна</span>
+                        <span class="title">Beauty зйомка</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item fade-in" data-category="portrait">
+                <img src="../images/portfolio/portrait-3.jpg" alt="Портретна зйомка"> 
+                <div class="gallery-placeholder" style="background: linear-gradient(145deg,#e6e0d6,#d6cfc0)">
+                    <span class="ph-icon">📸</span>
+                    <span class="ph-label">portrait-3.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Портрет</span>
+                        <span class="title">Студійна зйомка</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Рядок 5 -->
+            <div class="gallery-item wide fade-in" data-category="family">
+                <img src="../images/portfolio/family-3.jpg" alt="Сімейна зйомка"> 
+                <div class="gallery-placeholder" style="background: linear-gradient(145deg,#ddd7cc,#cdc6b8)">
+                    <span class="ph-icon">🌿</span>
+                    <span class="ph-label">family-3.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Сімейна</span>
+                        <span class="title">На природі</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item fade-in" data-category="product">
+                <img src="../images/portfolio/product-3.jpg" alt="Предметна зйомка"> 
+                <div class="gallery-placeholder" style="background: linear-gradient(145deg,#e0dbd1,#d0c9bc)">
+                    <span class="ph-icon">🍃</span>
+                    <span class="ph-label">product-3.jpg</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-info">
+                        <span class="cat">Предметна</span>
+                        <span class="title">Organic бренд</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Немає результатів -->
+            <div class="no-results" id="noResults">
+                <div class="icon">🔍</div>
+                <p>За цією категорією робіт поки немає</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+         ЛАЙТБОКС
+         ============================================================ -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-wrap">
+            <button class="lb-btn" id="lightboxPrev">&#8592;</button>
+            <div style="position:relative">
+                <button class="lb-close" id="lightboxClose">✕ закрити</button>
+                <img src="" alt="" id="lightboxImg">
+                <div class="lb-counter" id="lbCounter">1 / 12</div>
+            </div>
+            <button class="lb-btn" id="lightboxNext">&#8594;</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         CTA
+         ============================================================ -->
+    <div class="cta-section">
+        <span class="tag">Сподобались роботи?</span>
+        <h2>Запишіться на свою<br><em>фотосесію</em> вже сьогодні</h2>
+        <a href="booking.html" class="btn btn-light">Забронювати дату</a>
+    </div>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div>
+                <a href="index.html" class="footer-logo">Photo<span>Studio</span></a>
+                <p class="footer-tagline">Професійна фотозйомка в серці Києва. Ваша історія — в кожному кадрі.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Навігація</h4>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="services.html">Послуги</a></li>
+                    <li><a href="portfolio.html">Портфоліо</a></li>
+                    <li><a href="booking.html">Запис</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Послуги</h4>
+                <ul>
+                    <li><a href="services.html">Портретна зйомка</a></li>
+                    <li><a href="services.html">Весільна фотографія</a></li>
+                    <li><a href="services.html">Сімейні фотосесії</a></li>
+                    <li><a href="services.html">Предметна зйомка</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Контакти</h4>
+                <ul>
+                    <li><a href="tel:+380500000000">📞 +38 (050) 000-00-00</a></li>
+                    <li><a href="mailto:hello@photostudio.ua">✉️ hello@photostudio.ua</a></li>
+                    <li><a href="contacts.html">📍 вул. Хрещатик 1, Київ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© <span id="currentYear"></span> PhotoStudio. Серьоженко Л.В. — Кваліфікаційна робота ДТЕУ</p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="../js/script.js"></script>
+    <script>
+    /* ── Фільтрація + лічильник ── */
+    const filterBtns  = document.querySelectorAll('.filter-btn');
+    const items       = document.querySelectorAll('.gallery-item');
+    const countEl     = document.getElementById('visibleCount');
+    const noResults   = document.getElementById('noResults');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        let visible  = 0;
+
+        items.forEach(item => {
+          if (item.classList.contains('no-results')) return;
+          const match = filter === 'all' || item.dataset.category === filter;
+          item.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+
+        countEl.textContent = visible;
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+      });
+    });
+
+    /* ── Лайтбокс ── */
+    const lightbox  = document.getElementById('lightbox');
+    const lbImg     = document.getElementById('lightboxImg');
+    const lbCounter = document.getElementById('lbCounter');
+    const lbClose   = document.getElementById('lightboxClose');
+    const lbPrev    = document.getElementById('lightboxPrev');
+    const lbNext    = document.getElementById('lightboxNext');
+
+    let current = 0;
+    let visibleItems = [];
+
+    const getVisible = () =>
+      Array.from(items).filter(i =>
+        !i.classList.contains('no-results') && i.style.display !== 'none'
+      );
+
+    const openLb = (index) => {
+      visibleItems = getVisible();
+      current = index;
+      const img = visibleItems[current].querySelector('img');
+      if (!img) return; // якщо ще заглушка — не відкривати
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCounter.textContent = `${current + 1} / ${visibleItems.length}`;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeLb = () => {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    const showPrev = () => {
+      current = (current - 1 + visibleItems.length) % visibleItems.length;
+      const img = visibleItems[current].querySelector('img');
+      if (img) { lbImg.src = img.src; lbCounter.textContent = `${current + 1} / ${visibleItems.length}`; }
+    };
+
+    const showNext = () => {
+      current = (current + 1) % visibleItems.length;
+      const img = visibleItems[current].querySelector('img');
+      if (img) { lbImg.src = img.src; lbCounter.textContent = `${current + 1} / ${visibleItems.length}`; }
+    };
+
+    items.forEach((item, i) => {
+      item.addEventListener('click', () => openLb(i));
+    });
+
+    lbClose.addEventListener('click', closeLb);
+    lbPrev.addEventListener('click', showPrev);
+    lbNext.addEventListener('click', showNext);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLb();
+      if (e.key === 'ArrowLeft')  showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+    </script>
+
+</body>
+</html>
