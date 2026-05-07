@@ -1,14 +1,4 @@
-﻿/* ================================================================
-   script.js — PhotoStudio
-   Глобальний JavaScript для всього сайту
-   Підключати перед </body> кожної HTML-сторінки:
-   <script src="js/script.js"></script>
-   ================================================================ */
 
-
-/* ================================================================
-   1. МОБІЛЬНЕ МЕНЮ (бургер)
-   ================================================================ */
 (function initMobileMenu() {
     const burger = document.getElementById('burger');
     const navLinks = document.getElementById('navLinks');
@@ -20,7 +10,7 @@
         burger.setAttribute('aria-expanded', isOpen);
     });
 
-    // Закрити меню при кліку на посилання
+    
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('open');
@@ -29,7 +19,7 @@
         });
     });
 
-    // Закрити меню при кліку поза ним
+    
     document.addEventListener('click', (e) => {
         if (!burger.contains(e.target) && !navLinks.contains(e.target)) {
             navLinks.classList.remove('open');
@@ -39,9 +29,7 @@
 })();
 
 
-/* ================================================================
-   2. НАВІГАЦІЯ — ефект при скролі
-   ================================================================ */
+
 (function initNavScroll() {
     const nav = document.querySelector('nav');
     if (!nav) return;
@@ -51,14 +39,11 @@
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // перевірити одразу при завантаженні
+    onScroll(); 
 })();
 
 
-/* ================================================================
-   3. АКТИВНИЙ ПУНКТ НАВІГАЦІЇ
-   Автоматично підсвічує поточну сторінку
-   ================================================================ */
+
 (function initActiveNav() {
     const links = document.querySelectorAll('.nav-links a');
     const current = window.location.pathname.split('/').pop() || 'index.html';
@@ -74,10 +59,7 @@
 })();
 
 
-/* ================================================================
-   4. АНІМАЦІЯ ПОЯВИ ПРИ СКРОЛІ (Intersection Observer)
-   Всі елементи з класом .fade-in плавно з'являються
-   ================================================================ */
+
 (function initFadeIn() {
     const elements = document.querySelectorAll('.fade-in');
     if (!elements.length) return;
@@ -96,21 +78,19 @@
 
     elements.forEach(el => observer.observe(el));
 
-    // Stagger-затримки для карток послуг
+    
     document.querySelectorAll('.services-grid .service-card').forEach((card, i) => {
         card.style.transitionDelay = `${i * 80}ms`;
     });
 
-    // Stagger-затримки для галереї
+    
     document.querySelectorAll('.gallery-grid .gallery-item, .portfolio-preview .portfolio-item').forEach((item, i) => {
         item.style.transitionDelay = `${i * 60}ms`;
     });
 })();
 
 
-/* ================================================================
-   5. ФІЛЬТРАЦІЯ ГАЛЕРЕЇ (сторінка portfolio.html)
-   ================================================================ */
+
 (function initGalleryFilter() {
     const filterBtns = document.querySelectorAll('[data-filter]');
     const galleryItems = document.querySelectorAll('.gallery-item');
@@ -118,7 +98,7 @@
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Активна кнопка
+            
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
@@ -130,7 +110,7 @@
 
                 if (show) {
                     item.style.display = '';
-                    // невелика затримка для анімації
+                    
                     requestAnimationFrame(() => item.classList.add('visible'));
                 } else {
                     item.style.display = 'none';
@@ -142,9 +122,7 @@
 })();
 
 
-/* ================================================================
-   6. ЛАЙТБОКС (перегляд фото у збільшеному вигляді)
-   ================================================================ */
+
 (function initLightbox() {
     const lightbox = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightboxImg');
@@ -156,7 +134,7 @@
     let items = [];
     let current = 0;
 
-    // Зібрати всі зображення галереї
+    
     const updateItems = () => {
         items = Array.from(document.querySelectorAll('.gallery-item img'));
     };
@@ -186,22 +164,21 @@
         lbImg.src = items[current].src;
     };
 
-    // Клік по зображенню
     document.querySelectorAll('.gallery-item').forEach((item, index) => {
         item.addEventListener('click', () => openLightbox(index));
     });
 
-    // Закрити
+   
     lbClose && lbClose.addEventListener('click', closeLightbox);
     lbPrev && lbPrev.addEventListener('click', showPrev);
     lbNext && lbNext.addEventListener('click', showNext);
 
-    // Закрити кліком на фон
+   
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) closeLightbox();
     });
 
-    // Клавіатура
+   
     document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('open')) return;
         if (e.key === 'Escape') closeLightbox();
@@ -211,14 +188,12 @@
 })();
 
 
-/* ================================================================
-   7. ФОРМА БРОНЮВАННЯ (сторінка booking.html)
-   ================================================================ */
+
 (function initBookingForm() {
     const form = document.getElementById('bookingForm');
     if (!form) return;
 
-    // ── Валідація одного поля ──────────────────────────────────
+    
     const validateField = (field) => {
         const group = field.closest('.form-group');
         if (!group) return true;
@@ -226,17 +201,17 @@
         const value = field.value.trim();
         let isValid = true;
 
-        // Обов'язкове поле
+        
         if (field.hasAttribute('required') && !value) {
             isValid = false;
         }
 
-        // Email
+        
         if (field.type === 'email' && value) {
             isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
         }
 
-        // Телефон (мінімум 10 цифр)
+        
         if (field.type === 'tel' && value) {
             isValid = /^\+?[\d\s\-\(\)]{10,}$/.test(value);
         }
@@ -245,7 +220,7 @@
         return isValid;
     };
 
-    // ── Валідація в реальному часі ─────────────────────────────
+    
     form.querySelectorAll('input, select, textarea').forEach(field => {
         field.addEventListener('blur', () => validateField(field));
         field.addEventListener('input', () => {
@@ -255,11 +230,11 @@
         });
     });
 
-    // ── Відправка форми ────────────────────────────────────────
+    
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Валідувати всі поля
+        
         const fields = form.querySelectorAll('input, select, textarea');
         let allValid = true;
 
@@ -269,7 +244,7 @@
 
         if (!allValid) return;
 
-        // ── Симуляція відправки (замінити на реальний fetch/API) ──
+       
         const submitBtn = form.querySelector('[type="submit"]');
         const origText = submitBtn.textContent;
 
@@ -280,45 +255,41 @@
             submitBtn.textContent = origText;
             submitBtn.disabled = false;
 
-            // Показати успіх
+            
             const successMsg = document.getElementById('formSuccess');
             if (successMsg) successMsg.classList.add('visible');
 
             form.reset();
 
-            // Прокрутити до повідомлення
+           
             successMsg?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            // Прибрати через 6 секунд
+            
             setTimeout(() => successMsg?.classList.remove('visible'), 6000);
         }, 1200);
 
-        /*
-        ── Реальна відправка через Formspree (розкоментуй): ──────
-        fetch('https://formspree.io/f/YOUR_FORM_ID', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form)
+        
+        fetch('https://formspree.io/f/xojrlogk', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
         })
-        .then(res => {
-          if (res.ok) {
-            document.getElementById('formSuccess')?.classList.add('visible');
-            form.reset();
-          }
-        })
-        .catch(err => console.error('Помилка відправки:', err))
-        .finally(() => {
-          submitBtn.textContent = origText;
-          submitBtn.disabled    = false;
-        });
-        */
+            .then(res => {
+                if (res.ok) {
+                    document.getElementById('formSuccess')?.classList.add('visible');
+                    form.reset();
+                }
+            })
+            .catch(err => console.error('Помилка відправки:', err))
+            .finally(() => {
+                submitBtn.textContent = origText;
+                submitBtn.disabled = false;
+            });
     });
 })();
 
 
-/* ================================================================
-   8. ФОРМА ЗВОРОТНОГО ЗВ'ЯЗКУ (сторінка contacts.html)
-   ================================================================ */
+
 (function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
@@ -346,9 +317,7 @@
 })();
 
 
-/* ================================================================
-   9. ПЛАВНА ПРОКРУТКА для anchor-посилань (#section)
-   ================================================================ */
+
 (function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', (e) => {
@@ -363,9 +332,7 @@
 })();
 
 
-/* ================================================================
-   10. ЛІЧИЛЬНИК СТАТИСТИКИ (анімація цифр у hero)
-   ================================================================ */
+
 (function initCounters() {
     const counters = document.querySelectorAll('[data-count]');
     if (!counters.length) return;
@@ -399,9 +366,7 @@
 })();
 
 
-/* ================================================================
-   11. ПОВЕРНЕННЯ ВГОРУ (кнопка scroll-to-top)
-   ================================================================ */
+
 (function initScrollTop() {
     const btn = document.getElementById('scrollTop');
     if (!btn) return;
@@ -416,10 +381,7 @@
 })();
 
 
-/* ================================================================
-   12. ПОТОЧНИЙ РІК у footer
-   Автоматично оновлює рік щоб не правити вручну
-   ================================================================ */
+
 (function initYear() {
     const el = document.getElementById('currentYear');
     if (el) el.textContent = new Date().getFullYear();
