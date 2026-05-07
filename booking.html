@@ -6,13 +6,12 @@
     <meta name="description" content="Онлайн-запис на фотосесію у PhotoStudio — оберіть послугу, дату та час.">
     <title>PhotoStudio — Запис на зйомку</title>
 
-    <!-- Шрифти -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Стилі -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="style.css">
 
     <style>
-        /* ── Hero сторінки ── */
+        
         .page-hero {
             padding-top: 70px;
             background: var(--white);
@@ -49,7 +48,7 @@
                 color: var(--border);
             }
 
-        /* ── Основний layout ── */
+        
         .booking-wrap {
             max-width: 1200px;
             margin: 0 auto;
@@ -60,7 +59,7 @@
             align-items: start;
         }
 
-        /* ── Форма ── */
+        
         .form-section h2 {
             font-family: var(--font-head);
             font-size: clamp(28px, 3vw, 42px);
@@ -75,7 +74,7 @@
             line-height: 1.7;
         }
 
-        /* Кроки форми */
+        
         .form-steps {
             display: flex;
             gap: 0;
@@ -115,7 +114,7 @@
                     content: ' ✓';
                 }
 
-        /* Групи полів */
+        
         .form-group {
             margin-bottom: 20px;
         }
@@ -177,7 +176,7 @@
             gap: 16px;
         }
 
-        /* Помилка */
+        
         .form-error {
             font-size: 12px;
             color: #c0392b;
@@ -193,7 +192,7 @@
             display: block;
         }
 
-        /* Повідомлення про успіх */
+        
         .form-success {
             display: none;
             padding: 24px 28px;
@@ -220,7 +219,7 @@
                 line-height: 1.65;
             }
 
-        /* Кнопка відправки */
+        
         .submit-wrap {
             margin-top: 28px;
             display: flex;
@@ -235,7 +234,7 @@
             line-height: 1.6;
         }
 
-        /* ── Бічна панель ── */
+        
         .booking-sidebar {
             position: sticky;
             top: 90px;
@@ -244,7 +243,7 @@
             gap: 16px;
         }
 
-        /* Картка інфо */
+        
         .info-card {
             background: var(--white);
             border: 1px solid var(--border);
@@ -290,7 +289,7 @@
             margin-bottom: 2px;
         }
 
-        /* Картка вибраної послуги (оновлюється JS) */
+        
         .selected-service {
             background: var(--dark);
             color: var(--white);
@@ -323,7 +322,7 @@
                 color: var(--gold-light);
             }
 
-        /* Картка FAQ */
+        
         .faq-card {
             background: var(--bg);
             border: 1px solid var(--border);
@@ -388,7 +387,7 @@
             padding-top: 10px;
         }
 
-        /* ── Footer ── */
+        
         .footer {
             background: var(--white);
             border-top: 1px solid var(--border);
@@ -515,9 +514,7 @@
 </head>
 <body>
 
-    <!-- ============================================================
-         НАВІГАЦІЯ
-         ============================================================ -->
+    
     <nav>
         <div class="nav-inner">
             <a href="index.html" class="nav-logo">Photo<span>Studio</span></a>
@@ -534,9 +531,7 @@
         </div>
     </nav>
 
-    <!-- ============================================================
-         HERO СТОРІНКИ
-         ============================================================ -->
+    
     <div class="page-hero">
         <div class="page-hero-inner">
             <div>
@@ -554,18 +549,16 @@
         </div>
     </div>
 
-    <!-- ============================================================
-         ФОРМА + БІЧНА ПАНЕЛЬ
-         ============================================================ -->
+    
     <div class="booking-wrap">
 
-        <!-- ФОРМА -->
+        
         <div class="form-section">
 
             <h2>Залиш <em>заявку</em></h2>
             <p class="sub">Всі поля позначені * — обов'язкові. Після відправки ми зателефонуємо або напишемо для підтвердження.</p>
 
-            <!-- Індикатор кроків -->
+            
             <div class="form-steps">
                 <div class="form-step-tab active" id="step1tab">1. Послуга</div>
                 <div class="form-step-tab" id="step2tab">2. Дата і час</div>
@@ -574,7 +567,7 @@
 
             <form id="bookingForm" novalidate>
 
-                <!-- КРОК 1: Послуга -->
+                
                 <div class="form-group">
                     <label class="form-label" for="service">Тип зйомки <span class="req">*</span></label>
                     <select class="form-control" id="service" name="service" required>
@@ -590,7 +583,7 @@
                     <span class="form-error">Будь ласка, оберіть тип зйомки</span>
                 </div>
 
-                <!-- КРОК 2: Дата і час -->
+                
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label" for="date">Бажана дата <span class="req">*</span></label>
@@ -616,7 +609,6 @@
                     </div>
                 </div>
 
-                <!-- КРОК 3: Контакти -->
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label" for="name">Ваше ім'я <span class="req">*</span></label>
@@ -655,7 +647,7 @@
                               placeholder="Розкажіть про ідею зйомки, стиль, особливі побажання..."></textarea>
                 </div>
 
-                <!-- Відправка -->
+                
                 <div class="submit-wrap">
                     <button type="submit" class="btn btn-primary" id="submitBtn">
                         Надіслати заявку
@@ -668,7 +660,6 @@
 
             </form>
 
-            <!-- Успішне відправлення -->
             <div class="form-success" id="formSuccess">
                 <h3>✓ Заявку отримано!</h3>
                 <p>
@@ -681,17 +672,17 @@
 
         </div>
 
-        <!-- БІЧНА ПАНЕЛЬ -->
+        
         <aside class="booking-sidebar">
 
-            <!-- Обрана послуга (оновлюється динамічно) -->
+            
             <div class="selected-service" id="selectedService">
                 <span class="ss-label">Ви обрали</span>
                 <div class="ss-name" id="ssName">—</div>
                 <div class="ss-price" id="ssPrice">—</div>
             </div>
 
-            <!-- Контактна інформація -->
+            
             <div class="info-card">
                 <h3>Як це працює</h3>
                 <div class="info-list">
@@ -726,7 +717,7 @@
                 </div>
             </div>
 
-            <!-- Контакти -->
+            
             <div class="info-card">
                 <h3>Є питання?</h3>
                 <div class="info-list">
@@ -754,7 +745,7 @@
                 </div>
             </div>
 
-            <!-- FAQ -->
+            
             <div class="faq-card">
                 <h3>Часті питання</h3>
 
@@ -783,9 +774,7 @@
         </aside>
     </div>
 
-    <!-- ============================================================
-         FOOTER
-         ============================================================ -->
+    
     <footer class="footer">
         <div class="footer-top">
             <div>
@@ -825,15 +814,15 @@
         </div>
     </footer>
 
-    <!-- JS -->
+    
     <script src="../js/script.js"></script>
     <script>
-    /* ── Мінімальна дата — сьогодні ── */
+    
     const dateInput = document.getElementById('date');
     const today = new Date().toISOString().split('T')[0];
     dateInput.setAttribute('min', today);
 
-    /* ── Динамічна картка обраної послуги ── */
+    
     const serviceSelect = document.getElementById('service');
     const selectedBox   = document.getElementById('selectedService');
     const ssName        = document.getElementById('ssName');
@@ -860,7 +849,7 @@
       }
     });
 
-    /* ── Індикатор кроків ── */
+    
     const step1tab = document.getElementById('step1tab');
     const step2tab = document.getElementById('step2tab');
     const step3tab = document.getElementById('step3tab');
@@ -888,7 +877,6 @@
       });
     });
 
-    /* ── Валідація та відправка форми ── */
     const form      = document.getElementById('bookingForm');
     const submitBtn = document.getElementById('submitBtn');
     const successEl = document.getElementById('formSuccess');
@@ -938,7 +926,7 @@
       }, 1200);
     });
 
-    /* ── FAQ акордеон ── */
+    
     document.querySelectorAll('.faq-q').forEach(q => {
       q.addEventListener('click', () => {
         const item = q.closest('.faq-item');
