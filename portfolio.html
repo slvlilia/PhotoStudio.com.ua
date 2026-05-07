@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -6,13 +6,12 @@
     <meta name="description" content="Портфоліо фотостудії PhotoStudio — приклади портретної, весільної, сімейної та предметної зйомки.">
     <title>PhotoStudio — Портфоліо</title>
 
-    <!-- Шрифти -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Стилі -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="style.css">
 
     <style>
-        /* ── Hero сторінки ── */
+        
         .page-hero {
             padding-top: 70px;
             background: var(--white);
@@ -49,7 +48,7 @@
                 color: var(--border);
             }
 
-        /* ── Фільтри ── */
+        
         .portfolio-section {
             max-width: 1200px;
             margin: 0 auto;
@@ -88,7 +87,7 @@
                 color: var(--white);
             }
 
-        /* ── Галерея ── */
+        
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -103,7 +102,7 @@
             cursor: pointer;
         }
 
-            /* Великі плитки */
+            
             .gallery-item.wide {
                 grid-column: span 2;
                 aspect-ratio: 2/1;
@@ -126,7 +125,7 @@
                 transform: scale(1.05);
             }
 
-        /* Заглушка якщо нема фото */
+        
         .gallery-placeholder {
             width: 100%;
             height: 100%;
@@ -150,7 +149,7 @@
                 color: rgba(28,28,26,0.25);
             }
 
-        /* Overlay */
+        
         .gallery-overlay {
             position: absolute;
             inset: 0;
@@ -193,7 +192,7 @@
             display: block;
         }
 
-        /* ── Лічильник результатів ── */
+        
         .results-count {
             font-size: 13px;
             color: var(--muted);
@@ -205,7 +204,7 @@
                 font-weight: 500;
             }
 
-        /* ── Повідомлення "нічого не знайдено" ── */
+        
         .no-results {
             display: none;
             grid-column: 1 / -1;
@@ -224,7 +223,7 @@
                 font-size: 14px;
             }
 
-        /* ── Лайтбокс ── */
+        
         .lightbox {
             display: none;
             position: fixed;
@@ -304,7 +303,7 @@
             color: rgba(255,255,255,0.4);
         }
 
-        /* ── CTA ── */
+        
         .cta-section {
             background: var(--dark);
             padding: 88px 40px;
@@ -325,7 +324,7 @@
                 margin-bottom: 36px;
             }
 
-        /* ── Footer ── */
+        
         .footer {
             background: var(--white);
             border-top: 1px solid var(--border);
@@ -402,7 +401,7 @@
             color: var(--muted);
         }
 
-        /* ── Адаптивність ── */
+        
         @media (max-width: 768px) {
             .page-hero-inner {
                 padding: 48px 20px 40px;
@@ -458,9 +457,7 @@
 </head>
 <body>
 
-    <!-- ============================================================
-         НАВІГАЦІЯ
-         ============================================================ -->
+    
     <nav>
         <div class="nav-inner">
             <a href="index.html" class="nav-logo">Photo<span>Studio</span></a>
@@ -477,9 +474,7 @@
         </div>
     </nav>
 
-    <!-- ============================================================
-         HERO СТОРІНКИ
-         ============================================================ -->
+    
     <div class="page-hero">
         <div class="page-hero-inner">
             <div>
@@ -497,12 +492,10 @@
         </div>
     </div>
 
-    <!-- ============================================================
-         ГАЛЕРЕЯ
-         ============================================================ -->
+    
     <section class="portfolio-section">
 
-        <!-- Фільтри -->
+        
         <div class="filters">
             <button class="filter-btn active" data-filter="all">Всі роботи</button>
             <button class="filter-btn" data-filter="portrait">Портрет</button>
@@ -511,13 +504,13 @@
             <button class="filter-btn" data-filter="product">Предметна</button>
         </div>
 
-        <!-- Лічильник -->
+        
         <p class="results-count">Показано: <span id="visibleCount">12</span> робіт</p>
 
-        <!-- Сітка галереї -->
+        
         <div class="gallery-grid" id="galleryGrid">
 
-            <!-- Рядок 1 -->
+            
             <div class="gallery-item wide fade-in" data-category="wedding">
              <img src="../images/portfolio/wedding-1.jpg" alt="Весільна зйомка"> 
                 <div class="gallery-placeholder">
@@ -546,7 +539,6 @@
                 </div>
             </div>
 
-            <!-- Рядок 2 -->
             <div class="gallery-item fade-in" data-category="family">
                  <img src="../images/portfolio/family-1.jpg" alt="Сімейна зйомка"> 
                 <div class="gallery-placeholder" style="background: linear-gradient(145deg,#ddd8ce,#cec7bb)">
@@ -575,7 +567,6 @@
                 </div>
             </div>
 
-            <!-- Рядок 3 -->
             <div class="gallery-item fade-in" data-category="portrait">
                 <img src="../images/portfolio/portrait-2.jpg" alt="Портретна зйомка"> 
                 <div class="gallery-placeholder" style="background: linear-gradient(145deg,#e0dbd1,#d0c9bc)">
@@ -604,7 +595,7 @@
                 </div>
             </div>
 
-            <!-- Рядок 4 -->
+            
             <div class="gallery-item fade-in" data-category="family">
                 <img src="../images/portfolio/family-2.jpg" alt="Сімейна зйомка"> 
                 <div class="gallery-placeholder" style="background: linear-gradient(145deg,#e2ddd4,#d2cbbe)">
@@ -647,7 +638,7 @@
                 </div>
             </div>
 
-            <!-- Рядок 5 -->
+            
             <div class="gallery-item wide fade-in" data-category="family">
                 <img src="../images/portfolio/family-3.jpg" alt="Сімейна зйомка"> 
                 <div class="gallery-placeholder" style="background: linear-gradient(145deg,#ddd7cc,#cdc6b8)">
@@ -676,7 +667,7 @@
                 </div>
             </div>
 
-            <!-- Немає результатів -->
+            
             <div class="no-results" id="noResults">
                 <div class="icon">🔍</div>
                 <p>За цією категорією робіт поки немає</p>
@@ -685,9 +676,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         ЛАЙТБОКС
-         ============================================================ -->
+    
     <div class="lightbox" id="lightbox">
         <div class="lightbox-wrap">
             <button class="lb-btn" id="lightboxPrev">&#8592;</button>
@@ -700,18 +689,14 @@
         </div>
     </div>
 
-    <!-- ============================================================
-         CTA
-         ============================================================ -->
+    
     <div class="cta-section">
         <span class="tag">Сподобались роботи?</span>
         <h2>Запишіться на свою<br><em>фотосесію</em> вже сьогодні</h2>
         <a href="booking.html" class="btn btn-light">Забронювати дату</a>
     </div>
 
-    <!-- ============================================================
-         FOOTER
-         ============================================================ -->
+   
     <footer class="footer">
         <div class="footer-top">
             <div>
@@ -751,10 +736,10 @@
         </div>
     </footer>
 
-    <!-- JS -->
+    
     <script src="../js/script.js"></script>
     <script>
-    /* ── Фільтрація + лічильник ── */
+    
     const filterBtns  = document.querySelectorAll('.filter-btn');
     const items       = document.querySelectorAll('.gallery-item');
     const countEl     = document.getElementById('visibleCount');
@@ -780,7 +765,7 @@
       });
     });
 
-    /* ── Лайтбокс ── */
+   
     const lightbox  = document.getElementById('lightbox');
     const lbImg     = document.getElementById('lightboxImg');
     const lbCounter = document.getElementById('lbCounter');
@@ -800,7 +785,7 @@
       visibleItems = getVisible();
       current = index;
       const img = visibleItems[current].querySelector('img');
-      if (!img) return; // якщо ще заглушка — не відкривати
+      if (!img) return; 
       lbImg.src = img.src;
       lbImg.alt = img.alt;
       lbCounter.textContent = `${current + 1} / ${visibleItems.length}`;
