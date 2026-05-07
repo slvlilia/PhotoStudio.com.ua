@@ -6,15 +6,12 @@
     <meta name="description" content="Послуги фотостудії PhotoStudio — портретна, весільна, сімейна та предметна зйомка. Ціни та деталі.">
     <title>PhotoStudio — Послуги</title>
 
-    <!-- Шрифти -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Стилі (папка css/ на рівень вище) -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="style.css">
 
     <style>
-        /* ── Локальні стилі лише для services.html ── */
-
-        /* Hero сторінки */
+        
         .page-hero {
             padding-top: 70px;
             background: var(--white);
@@ -62,7 +59,7 @@
                 color: var(--border);
             }
 
-        /* ── Сітка послуг ── */
+       
         .services-section {
             max-width: 1200px;
             margin: 0 auto;
@@ -76,7 +73,7 @@
             margin-bottom: 2px;
         }
 
-        /* Картка послуги — велика */
+        
         .svc-big {
             background: var(--white);
             border: 1px solid var(--border);
@@ -117,7 +114,7 @@
             transform: scale(1.05);
         }
 
-        /* заглушка якщо нема фото */
+        
         .svc-big-img .placeholder {
             font-size: 36px;
             opacity: 0.18;
@@ -189,7 +186,7 @@
             color: var(--muted);
         }
 
-        /* Що входить */
+        
         .svc-includes {
             margin-bottom: 28px;
         }
@@ -224,7 +221,7 @@
                 flex-shrink: 0;
             }
 
-        /* ── Додаткові послуги (малі картки) ── */
+        
         .extra-section {
             background: var(--white);
             border-top: 1px solid var(--border);
@@ -299,7 +296,7 @@
             color: var(--gold);
         }
 
-        /* ── Таблиця пакетів ── */
+        
         .packages-section {
             max-width: 1200px;
             margin: 0 auto;
@@ -422,7 +419,7 @@
             padding: 0 28px 28px;
         }
 
-        /* ── CTA ── */
+        
         .cta-section {
             background: var(--dark);
             padding: 88px 40px;
@@ -443,7 +440,7 @@
                 margin-bottom: 36px;
             }
 
-        /* ── Footer ── */
+        
         .footer {
             background: var(--white);
             border-top: 1px solid var(--border);
@@ -520,7 +517,7 @@
             color: var(--muted);
         }
 
-        /* ── Адаптивність ── */
+        
         @media (max-width: 1024px) {
             .services-big-grid {
                 grid-template-columns: 1fr;
@@ -591,9 +588,7 @@
 </head>
 <body>
 
-    <!-- ============================================================
-         НАВІГАЦІЯ
-         ============================================================ -->
+    
     <nav>
         <div class="nav-inner">
             <a href="index.html" class="nav-logo">Photo<span>Studio</span></a>
@@ -610,9 +605,7 @@
         </div>
     </nav>
 
-    <!-- ============================================================
-         HERO СТОРІНКИ
-         ============================================================ -->
+    
     <div class="page-hero">
         <div class="page-hero-inner">
             <div>
@@ -630,16 +623,14 @@
         </div>
     </div>
 
-    <!-- ============================================================
-         ОСНОВНІ ПОСЛУГИ
-         ============================================================ -->
+    
     <section class="services-section">
         <span class="tag fade-in">Що ми робимо</span>
         <h2 class="section-title fade-in">Основні <em>напрямки</em></h2>
 
         <div class="services-big-grid" style="margin-top: 48px;">
 
-            <!-- Портрет -->
+            
             <div class="svc-big fade-in">
                 <div class="svc-big-img">
                    <img src="../images/services/portrait.jpg" alt="Портретна зйомка">
@@ -672,7 +663,7 @@
                 </div>
             </div>
 
-            <!-- Весілля -->
+           
             <div class="svc-big fade-in">
                 <div class="svc-big-img">
                     <img src="../images/services/wedding.jpg" alt="Весільна зйомка"> -->
@@ -706,7 +697,7 @@
                 </div>
             </div>
 
-            <!-- Сімейна -->
+            
             <div class="svc-big fade-in">
                 <div class="svc-big-img">
                    <img src="../images/services/family.jpg" alt="Сімейна зйомка"> 
@@ -740,7 +731,7 @@
                 </div>
             </div>
 
-            <!-- Предметна -->
+            
             <div class="svc-big fade-in">
                 <div class="svc-big-img">
                     <img src="../images/services/product.jpg" alt="Предметна зйомка"> -->       
@@ -776,9 +767,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         ДОДАТКОВІ ПОСЛУГИ
-         ============================================================ -->
+    
     <div class="extra-section">
         <div class="extra-inner">
             <span class="tag fade-in">Більше можливостей</span>
@@ -807,16 +796,14 @@
         </div>
     </div>
 
-    <!-- ============================================================
-         ПАКЕТИ
-         ============================================================ -->
+   
     <div class="packages-section">
         <span class="tag fade-in">Обирай зручний формат</span>
         <h2 class="section-title fade-in">Пакети <em>зйомки</em></h2>
 
         <div class="packages-grid">
 
-            <!-- Базовий -->
+            
             <div class="package-card fade-in">
                 <div class="package-head">
                     <div class="package-name">Базовий</div>
@@ -842,7 +829,7 @@
                 </div>
             </div>
 
-            <!-- Стандарт (популярний) -->
+           
             <div class="package-card featured fade-in">
                 <div class="package-badge">Найпопулярніший</div>
                 <div class="package-head">
@@ -869,7 +856,7 @@
                 </div>
             </div>
 
-            <!-- Преміум -->
+            
             <div class="package-card fade-in">
                 <div class="package-head">
                     <div class="package-name">Преміум</div>
@@ -898,18 +885,14 @@
         </div>
     </div>
 
-    <!-- ============================================================
-         CTA
-         ============================================================ -->
+    
     <div class="cta-section">
         <span class="tag">Не знайшли потрібне?</span>
         <h2>Напишіть нам —<br>підберемо <em>індивідуальний</em> формат</h2>
         <a href="contacts.html" class="btn btn-light">Зв'язатися з нами</a>
     </div>
 
-    <!-- ============================================================
-         FOOTER
-         ============================================================ -->
+    
     <footer class="footer">
         <div class="footer-top">
             <div>
@@ -949,7 +932,7 @@
         </div>
     </footer>
 
-    <!-- JS (папка js/ на рівень вище) -->
+  
     <script src="../js/script.js"></script>
 
 </body>
